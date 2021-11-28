@@ -1,3 +1,4 @@
 # PROD - People Recommenders on Opinion Dynamics
 
-Reference code for the submission at ICWSM 2022.
+Reference code for "The Effect of People Recommenders on Echo Chambers and Polarization" at ICWSM 2022.
+
