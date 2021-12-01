@@ -32,8 +32,8 @@ However PROD is an highly-customizable procedure with several reusable component
     - You can have a look at the ```binomial_test_p_value()``` method to check how we have assessed the statistical significance of the outcomes.
  
   - At ```src/PROD_EPISTEMIC.py``` you can find the main class that allows to run our _PROD_ procedure under the Epistemological opinion update rule.
-    - in the ```compute_metrics()``` you can decide which metric you want to measure at the end of each round. **Here, you could add your own metric. Implement your function in measures.py, add it to the list and you are done!**
-    - in the ```recommender_sys()``` you can find how the various implemented algorithms are chosen in a _PROD_ run. **Here, you could add your own recommender algorithm. Implement your function in recommenders.py, then add a specific ```if``` statement and you are done!**
+    - in ```compute_metrics()``` you can decide which metric you want to measure at the end of each round. **Here, you could add your own metric. Implement your function in measures.py, add it to the list and you are done!**
+    - in ```recommender_sys()``` you can find how the various implemented algorithms are chosen in a _PROD_ run. **Here, you could add your own recommender algorithm. Implement your function in recommenders.py, then add a specific ```if``` statement and you are done!**
     - the main function is ```simulate()``` that you can use to execute one single _PROD_ run and allows you to input a random seed to assess the robustness of your results.
  
   - At ```src/BCM.py``` you can find the extension of PROD with the bounded confidence opinion update rule. 
