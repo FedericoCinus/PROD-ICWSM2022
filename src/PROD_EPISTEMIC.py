@@ -7,7 +7,10 @@ import warnings
 import numpy as np
 import networkx as nx
 from tqdm import tqdm
+from warnings import simplefilter
+simplefilter(action='ignore', category=FutureWarning)
 from sklearn.preprocessing.data import QuantileTransformer
+
 from scipy.sparse import SparseEfficiencyWarning
 from recommenders import *
 from measures import *
@@ -488,7 +491,10 @@ class PROD:
         '''
         #time0 = time.time()
         self.set_seed(seed)
-        filename = './quantile_transformation_functions/quantile-scaler-'+ self.graph_name + str(self.G.number_of_nodes()) + '-' + str(self.recommender) +'.pkl'
+        directory = './quantile_transformation_functions'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        filename = directory+'/quantile-scaler-'+ self.graph_name + str(self.G.number_of_nodes()) + '-' + str(self.recommender) +'.pkl'
         if os.path.isfile(filename):
             self.quantile_scaler = pickle.load(open(filename, "rb"))
         else:

@@ -19,7 +19,7 @@ CASCADES_MODEL = 'BCM'
 SIMULATION_STAT = 1
 OPINION_STAT = 10
 GRAPH_STAT = 1
-N_JOBS = 1
+N_JOBS = 3
 
 # Input
 NETWORKS = ['fortunato',]
@@ -33,7 +33,7 @@ fortunato_avg_deg = 12
 # General Model
 RECOMMENDERS = [2,]              # {'UNIFORM':0, 'DJ': 1, 'fwp': 6} else None
 INTERACTIONS = [2,]              # number of communications for each node in each step (node changes opinion)
-MAX_TIMES =  [10,]
+MAX_TIMES = [10,]
 WITH_MISINFORMATIONS = [0,]      # 0-> None, 1/2: influence between opposite opinions
 RANDOMNESS_PERC = [0.,]
 REWIRINGS = [.4]
@@ -42,43 +42,21 @@ INNOVATORS_PERC = [0.5]
 MODULARITIES = [.05,]            # value for mu parameter in Fortunato - higher mu -> lower clust
 SUSCEPTIBILITY_RANGES = [(0, 1)]
 SUSCEPTIBILITY_DISTRIBS = [None,]
-INTERVENTION_PROBS = (np.arange(0, 1, .15))
-INTERVENTION_TYPES = [0, 1, 2,]  # 0 uniform, 1 propto opinion difference, 2 propto 1/in_deg(neigh)
+INTERVENTION_PROBS = [.1]
+INTERVENTION_TYPES = [0,]  # 0 uniform, 1 propto opinion difference, 2 propto 1/in_deg(neigh)
 
 
 # Epistemic
 EPSILONS = [.005,] # probability of success in the experiments (0.5 + eps): greater eps-> easier to converge to 1
-EXPERIMENTS0 = np.arange(100, 1000, 200)
-EXPERIMENTS1 = [15,]
-EXPERIMENTS2 = np.arange(1, 6, 1)
+# the number of experiments per node depends of ε
+EXPERIMENTS0 = np.arange(100, 1000, 200) # ε = .001
+EXPERIMENTS1 = [15,]                     # ε = .005
+EXPERIMENTS2 = np.arange(1, 6, 1)        # ε = .01
 
 # BCM
 MUS = [.2,]
 DELTAS = [.2]
 NONE = -777 # just for notation
-
-
-# simulation files
-NOW = datetime.now()
-folder = ('../Simulations/heatmap-'+CASCADES_MODEL+'-'+NETWORKS[0]+\
-          '-intervention-rebuttal-'+str(OPINION_STAT)+'grid-pop'+\
-          str(POPULATIONS[0])+'-' + str(NOW))
-os.mkdir(folder)
-filename = (folder + '/heatmap-'+CASCADES_MODEL+'-'+NETWORKS[0]+\
-            '-intervention-rebuttal--'+str(OPINION_STAT)+'grid-pop'+\
-            str(POPULATIONS[0])+'.txt')
-## header of dataframe
-with open(folder+'/results-stats.csv', 'w') as f:
-    f.write(('g_name;population_size;number_of_edges;beta;innovators_perc;'
-            'centrism;conformism;modularity;m_barabasi;p_rew_erdos;recommender;'
-            'rewiring;rewiring_type;suscept_range;suscept_distrib;'
-            's;intervention_prob;intervention_type;max_time;'
-            'misinformation;epsilon;n_experiments;mu;delta;time;'
-            'converged;tot_rewiring;simulation_seed;opinion_seed;'
-            'graph_seed;avg_op0;avg_opf;ndi0;ndif;stdv0;stdvf;clust0;'
-            'clustf;BC0;BCf;neigh_corr0;neigh_corrf;num_peaks0;num_peaksf;'
-            'rwc0;rwcf;strongly_cc0;strongly_ccf;propro;prono;nono;nopro;'
-            'other\n'))
 
 
 #####################################   SIMULATION   ############################
@@ -88,7 +66,7 @@ def approx_time(rewirings, _population_size, _s, _max_time, _recommender):
     rewiring_time = recommender2time[_recommender]
     return ((_population_size*_max_time*_s - rewirings)*choosing_time + rewirings*rewiring_time)/60
 
-def try_different_params(args, seed):
+def try_different_params(args, seed, _results_filename):
     '''Makes simulation for all parameters with initial configuration setted by seed
     '''
     GRAPH_SEED, OPINION_SEED, SIMULATION_SEED = seed # each time the initial configuration is different
@@ -204,7 +182,7 @@ def try_different_params(args, seed):
     for type_interaction in ['pro_pro', 'pro_no', 'no_no', 'no_pro', 'other']:
         res += ';'+str(count_type_interactions[type_interaction])
     res += '\n'
-    with open(folder+'/results-stats.csv', 'a') as f:
+    with open(_results_filename, 'a') as f:
         f.write(res)
 
 
@@ -212,31 +190,62 @@ def try_different_params(args, seed):
 def try_different_seeds(args_and_SEEDS):
     all_args_inner = args_and_SEEDS[0]
     seeds = (args_and_SEEDS[1], args_and_SEEDS[2], args_and_SEEDS[3])
-    now = datetime.now()
-    with open(filename, 'a') as f:
-        f.write(str(seeds) + ' simulation started at: ' + str(now))
+    unique_results_filename = args_and_SEEDS[4]
+    unique_log_filename = args_and_SEEDS[5]
+    now = str(datetime.now())
+    with open(unique_log_filename, 'a') as f:
+        f.write('\n'+ str(seeds) + ' simulation started at: ' + now)
     print('Simulation', seeds,'started..')
     for args in all_args_inner:
         try:
-            try_different_params(args, seeds)
+            try_different_params(args, seeds, unique_results_filename)
         except:
             with open('log_error_file.txt', 'a') as file:
                 file.write('='*10)
-                file.write('\n' + str(args) + '\n' + str(seeds) + '\n')
+                file.write('\n Bad args: ' + str(args) + '\n' + str(seeds) + '\n')
             raise
     print('Seed', seeds, 'finished')
-    now = datetime.now()
-    with open(filename, 'a') as f:
-        f.write('\n' + str(seeds) + ' simulation finished at: ' + str(now))
+    now = str(datetime.now())
+    with open(unique_log_filename, 'a') as f:
+        f.write('\n' + str(seeds) + ' simulation finished at: ' + now)
 
 ################################################################################
 if __name__ == '__main__':
+
+    # simulation files
+    NOW = str(datetime.now())
+    directory = '../simulations'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    folder = (directory+'/heatmap-'+CASCADES_MODEL+'-'+NETWORKS[0]+\
+              '-intervention-rebuttal-'+str(OPINION_STAT)+'grid-pop'+\
+              str(POPULATIONS[0])+'-' + NOW)
+    os.mkdir(folder)
+    log_filename = (folder + '/heatmap-'+CASCADES_MODEL+'-'+NETWORKS[0]+\
+                '-intervention-rebuttal--'+str(OPINION_STAT)+'grid-pop'+\
+                str(POPULATIONS[0])+'.txt')
+    ## header of dataframe
+
+    results_filename = folder + '/results-stats.csv'
+    with open(results_filename, 'w') as f:
+        f.write(('g_name;population_size;number_of_edges;beta;innovators_perc;'
+                'centrism;conformism;modularity;m_barabasi;p_rew_erdos;recommender;'
+                'rewiring;rewiring_type;suscept_range;suscept_distrib;'
+                's;intervention_prob;intervention_type;max_time;'
+                'misinformation;epsilon;n_experiments;mu;delta;time;'
+                'converged;tot_rewiring;simulation_seed;opinion_seed;'
+                'graph_seed;avg_op0;avg_opf;ndi0;ndif;stdv0;stdvf;clust0;'
+                'clustf;BC0;BCf;neigh_corr0;neigh_corrf;num_peaks0;num_peaksf;'
+                'rwc0;rwcf;strongly_cc0;strongly_ccf;propro;prono;nono;nopro;'
+                'other\n'))
+
+
     all_args = []
     i = 0
     m_barabasi = M_BARABASI[0]
     p_rew_erdos = P_REWIRING_ERDOS[0]
     max_time = MAX_TIMES[0]
-    print(f"main: {max_time}")
+    print(f"max time: {max_time}")
     mis = WITH_MISINFORMATIONS[0]
     for g_name in NETWORKS:
         for population_size in POPULATIONS:
@@ -309,11 +318,13 @@ if __name__ == '__main__':
     for i in range(grid_dim):
         all_args[i].append(grid_dim)
     # list of simulation seeds triplets
+
     args_and_SEEDS = []
     for sim_seed in range(SIMULATION_STAT):
         for op_seed in range(OPINION_STAT):
             for graph_seed in range(GRAPH_STAT):
-                args_and_SEEDS.append((all_args, sim_seed, op_seed, graph_seed))
+                args_and_SEEDS.append((all_args, sim_seed, op_seed, graph_seed,
+                                       results_filename, log_filename))
     pool = multiprocessing.Pool(N_JOBS)
     try:
         pool.map(try_different_seeds, args_and_SEEDS)
