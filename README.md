@@ -19,7 +19,7 @@ However, PROD is a highly-customizable procedure with several reusable component
     - ```personalized_pagerank()``` is the implementation of _Personalized PageRank_ algorithm.
     - ```calculate_DJ_row()``` is the implementation of _Directed Jaccard_ heuristic.
     - ```biased_link_predictor()``` is the implementation of what in the paper is called _OBA_.
-    - All the other recommenders are either inefficient versions of previous algorithms (used for debug purposes) or other algorithms similar to the ones used (i.e.: Adamic-Adar with Directed Jaccard).
+    - All the other recommenders are either inefficient versions of previous algorithms (used for debug purposes) or other algorithms similar to the ones used (e.g.: Adamic-Adar with Directed Jaccard).
  
   - At ```src/synthetic_generator.py``` you can find the implementation of the random network model.
     -  the main function is ```generate_G_and_opinions()``` which returns the networkX graph, the opinions vector, and the community assignments. If you want to reuse this module, we strongly warn that the LFR benchmark (the base algorithm to generate graphs with communities) is highly unstable, so stick with our values for the parameters ```avg_deg``` and ```power_law_coef```. The parameters ```mu``` and ```conformism``` tune the amount of modularity and initial homophily.
