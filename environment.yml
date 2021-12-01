@@ -11,6 +11,7 @@ dependencies:
   - freetype=2.11.0
   - intel-openmp=2021.4.0
   - joblib=1.1.0
+  - jupyter=1.0
   - kiwisolver=1.3.1
   - libcxx=12.0.0
   - libffi=3.3
@@ -50,4 +51,3 @@ dependencies:
   - pip:
     - fast-pagerank==0.0.4
     - scipy==1.3.3
-prefix: /Users/Cinus/miniconda3/envs/prodenv
