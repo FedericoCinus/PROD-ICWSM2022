@@ -49,4 +49,4 @@ However, PROD is a highly-customizable procedure with several reusable component
 
 ### Issues with conda environment
 
-We have noticed that, in particular cases, the conda environment seems unresolvably uninstallable. Despite encouraging you to upgrade your system to the latest version - especially `conda` and `python` - we have attached an environment version without build specifications that should run smoothly also in more extreme cases. Install the required environment using the command `CONDA_RESTORE_FREE_CHANNEL=1 conda env update -f environment_alt.yml`.
+We have noticed that, in particular cases, the conda environment seems unresolvably uninstallable. Despite encouraging you to upgrade your system to the latest version - especially `conda` and `python` - we have attached an environment version without build specifications that should run smoothly also in more extreme cases. Install the required environment using the command `CONDA_RESTORE_FREE_CHANNEL=1 conda env install -f environment_alt.yml`.
