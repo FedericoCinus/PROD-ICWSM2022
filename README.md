@@ -40,6 +40,6 @@ However, PROD is a highly-customizable procedure with several reusable component
     - **You can clone this module to realize your own opinion update rule**. It is quite simple, (i) extend the class contained in ```src/PROD_EPISTEMIC.py``` and (ii) override the method ```update_node_opinion()``` as done for _BCM_.
 
 
-  -  At ```src/measures.py``` you can find the implementation of the echo chambers/polarization measures adopted in the paper.
+  -  At ```src/measures.py``` you can find the implementation of the echo chambers and polarization measures adopted in the paper.
     - The functions ```compute_cont_correlation_neighbors()``` and ```compute_RWC()``` allows to compute the _NCI_ and the _RWC_ measures.
     - We left other implemented measures for those interested.
