@@ -14,7 +14,7 @@ If your goal is to reproduce the paper experiments you already know everything. 
 
 
 However, PROD is a highly-customizable procedure with several reusable components:
-  - At ```src/recommenders.py``` you can find the implementation of the #people-recommenders.
+  - At ```src/recommenders.py``` you can find the implementation of the people-recommender algorithms.
     - ```twitter_wtf()``` is the implementation of what in the paper is called _SALSA_.
     - ```personalized_pagerank()``` is the implementation of _Personalized PageRank_ algorithm.
     - ```calculate_DJ_row()``` is the implementation of _Directed Jaccard_ heuristic.
