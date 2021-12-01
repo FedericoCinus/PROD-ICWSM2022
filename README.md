@@ -1,5 +1,7 @@
 # PROD - People Recommenders on Opinion Dynamics
 
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 Reference code for "The Effect of People Recommenders on Echo Chambers and Polarization" accepted for publication@ICWSM'22.
 
 The repository structure has three main components:
