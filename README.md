@@ -26,7 +26,8 @@ However, PROD is a highly-customizable procedure with several reusable component
  
   -  At ```src/measures.py``` you can find the implementation of the echo chambers and polarization measures adopted in the paper.
   -  
-    -  pippo
+    -  The functions ```compute_cont_correlation_neighbors()``` and ```compute_RWC()``` allows to compute the _NCI_ and the _RWC_ measures.
+    -  We left other implemented measures for those interested.
     
   - At ```src/utils.py``` you can find auxiliary functions.
     - You can have a look at the ```binomial_test_p_value()``` method to check how we have assessed the statistical significance of the outcomes.
@@ -41,5 +42,5 @@ However, PROD is a highly-customizable procedure with several reusable component
 
 
   -  At ```src/measures.py``` you can find the implementation of the echo chambers and polarization measures adopted in the paper.
-    - The functions ```compute_cont_correlation_neighbors()``` and ```compute_RWC()``` allows to compute the _NCI_ and the _RWC_ measures.
-    - We left other implemented measures for those interested.
+    - 
+    - 
