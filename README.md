@@ -14,7 +14,7 @@ The repository structure has three main components:
 
 If your goal is to reproduce the paper experiments, just follow these steps.
 
-  1. Install the conda environment: `conda env create --file environment.yml`
+  1. Install the conda environment: `conda env create --file environment.yml` (issues with this step? go at the end of the page)
   2. Run `cd Simulation_scripts && python run_simulation.py`.
   3. Run the Jupyter notebook `notebooks/Network-visualizations.ipynb`.
 
@@ -45,3 +45,8 @@ However, PROD is a highly-customizable procedure with several reusable component
  
   - At `src/BCM.py` you can find the extension of PROD with the bounded confidence opinion update rule. 
     - **You can clone this module to realize your own opinion update rule**. It is quite simple, (i) extend the class contained in `src/PROD_EPISTEMIC.py` and (ii) override the method `update_node_opinion()` as done for _BCM_.
+
+
+### Issues with conda environment
+
+We have noticed that, in particular cases, the conda environment seems unresolvably uninstallable. Despite encouraging you to upgrade your system to the latest version - especially `conda` and `python` - we have attached an environment version without build specifications that should run smoothly also in more extreme cases. Install the required environment using the command `CONDA_RESTORE_FREE_CHANNEL=1 conda env create -f environment_alt.yml`.
