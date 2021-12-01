@@ -39,7 +39,3 @@ However, PROD is a highly-customizable procedure with several reusable component
   - At ```src/BCM.py``` you can find the extension of PROD with the bounded confidence opinion update rule. 
     - **You can clone this module to realize your own opinion update rule**. It is quite simple, (i) extend the class contained in ```src/PROD_EPISTEMIC.py``` and (ii) override the method ```update_node_opinion()``` as done for _BCM_.
 
-
-  -  At ```src/measures.py``` you can find the implementation of the echo chambers and polarization measures adopted in the paper.
-    - 
-    - 
