@@ -8,7 +8,7 @@ The repository structure has three main components:
   2. the folder ```Simulation_scripts``` contains a unique .py file that you need to invoke to run all the experiments.
   3. the folder ```notebooks``` where you can find the .ipynb notebooks to reproduce the visualizations shown in the paper.
 
-If your goal is to reproduce the paper experiments you already know everything. Follow these two steps (in strict chronological order):
+If your goal is to reproduce the paper experiments you already know everything. Follow these two steps:
   1. run ```python Simulation_scripts/run_simulation.py```
   2. run the jupyter notebook ```notebooks/Network-visualizations.ipynb```
 
