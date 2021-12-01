@@ -14,7 +14,7 @@ The repository structure has three main components:
 
 If your goal is to reproduce the paper experiments, just follow these steps.
 
-  1. Install the conda environment: `conda env create --file environment.yml`
+  1. Install the conda environment: `conda env create --file environment.yml` (IF YOU HAVE PROBLEMS WITH THIS STEP, GO AT THE BOTTOM OF THE PAGE)
   2. Run `cd Simulation_scripts && python run_simulation.py`.
   3. Run the Jupyter notebook `notebooks/Network-visualizations.ipynb`.
 
