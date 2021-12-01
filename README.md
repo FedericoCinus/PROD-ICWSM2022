@@ -23,6 +23,8 @@ However PROD is an highly-customizable procedure with several reusable component
   - At ```src/synthetic_generator.py``` you can find the implementation of the random network model.
     -  the main function is ```generate_G_and_opinions()``` which returns the networkX graph, the opinions vector and the community assignments. If you want to reuse this module, we strongly warn that the LFR benchmark (the base algorithm to generate graphs with communities) is highly unstable, so stick with our values for the parameters ```avg_deg``` and ```power_law_coef```. The parameters ```mu``` and ```conformism``` tune the amount of modularity and initial homophily.
   -  At ```src/measures.py```you can find the implementation of the echo chambers/polarization measures adopted in the paper.
+    - pippo
+     
     - The functions ```compute_cont_correlation_neighbors()``` and ```compute_RWC()``` allows to compute the _NCI_ and the _RWC_ measures.
     - We left other implemented measures for those interested.
   - At ```src/utils.py``` you can find auxiliary functions.
