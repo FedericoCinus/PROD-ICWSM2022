@@ -9,8 +9,10 @@ import networkx as nx
 from tqdm import tqdm
 from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
-from sklearn.preprocessing.data import QuantileTransformer
-
+try:
+    from sklearn.preprocessing.data import QuantileTransformer
+except:
+    from sklearn.preprocessing import QuantileTransformer
 from scipy.sparse import SparseEfficiencyWarning
 from recommenders import *
 from measures import *
