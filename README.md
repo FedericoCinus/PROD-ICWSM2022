@@ -47,6 +47,6 @@ However, PROD is a highly-customizable procedure with several reusable component
     - **You can clone this module to realize your own opinion update rule**. It is quite simple, (i) extend the class contained in `src/PROD_EPISTEMIC.py` and (ii) override the method `update_node_opinion()` as done for _BCM_.
 
 
-## Issues with conda environment
+### Issues with conda environment
 
 We have noticed that, in particular cases, the conda environment seems unresolvably uninstallable. Despite encouraging you to upgrade your system to the latest version - especially `conda` and `python` - we have attached an environment version without build specifications that should run smoothly also in more extreme cases. Install the required environment using the command `CONDA_RESTORE_FREE_CHANNEL=1 conda env update -f environment_alt.yml`.
