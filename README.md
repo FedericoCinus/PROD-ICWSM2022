@@ -1,6 +1,6 @@
 # PROD - People Recommenders on Opinion Dynamics
 
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Python 3.8.3](https://img.shields.io/badge/python-3.8.3-blue.svg)](https://www.python.org/downloads/release/python-383/)
 
 Reference code for "The Effect of People Recommenders on Echo Chambers and Polarization" accepted for publication@ICWSM'22.
 
