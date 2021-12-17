@@ -36,7 +36,6 @@ However, PROD is a highly-customizable procedure with several reusable component
       - We left other implemented measures for those interested.
     
   - At `src/utils.py` you can find auxiliary functions.
-    - You can have a look at the `binomial_test_p_value()` method to check how we have assessed the statistical significance of the outcomes.
  
   - At `src/PROD_EPISTEMIC.py` you can find the main class that allows running our _PROD_ procedure under the Epistemological opinion update rule.
     - in `compute_metrics()` you can decide which metric you want to measure at the end of each round. **Here, you could add your metric. Implement your function in measures.py, add it to the list, and you are done!**
